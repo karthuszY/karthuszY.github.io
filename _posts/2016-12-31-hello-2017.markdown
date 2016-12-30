@@ -4,17 +4,17 @@ title:      "Bye 2016 Hello 2017"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2016-12-31 8:00:00
 author:     "Karthus"
-<!-- header-img: "img/post-bg-2015.jpg" -->
+<!-- header-img: "img/home-bg-ojpg" -->
 catalog: true
 tags:
     - 生活
 ---
 
-> “Yeah It's on. ”
-  2016年的最后一天
-  对于2017年的想法，就用一个死循环来表示一下吧
-  while(year>2016){
-   better++;
+>
+  2016年的最后一天  <br />
+  对于2017年的想法，就用一个死循环来表示一下吧 <br />
+  while(year>2016){ <br />
+   better++; <br />
 }
 
 
