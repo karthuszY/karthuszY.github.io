@@ -15,9 +15,7 @@ tags:
 >
   2016年的最后一天  <br />
   对于2017年的想法，就用一个死循环来表示一下吧 <br />
-<code>  while(year>2016){ <br />
-      better++; <br />
-}</code>
+  while(year>2016){better++;}
 
 
 —— Karthus 记于 2016.12.31
