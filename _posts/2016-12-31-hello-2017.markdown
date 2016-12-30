@@ -4,10 +4,10 @@ title:      "Bye 2016 Hello 2017"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2016-12-31 8:00:00
 author:     "Karthus"
-<!-- header-img: "img/home-bg-ojpg" -->
+<!-- header-img: "img/home-bg-o.jpg" -->
 catalog: true
 tags:
-    - 生活
+    - 目标
 ---
 
 >
