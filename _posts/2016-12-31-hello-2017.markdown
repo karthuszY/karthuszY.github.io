@@ -4,7 +4,7 @@ title:      "Bye 2016 Hello 2017"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2016-12-31 8:00:00
 author:     "Karthus"
-<!-- header-img: "img/home-bg-o.jpg" -->
+<!-- header-img: "img/post_header_bg.jpg" -->
 catalog: true
 tags:
     - 目标
@@ -14,7 +14,7 @@ tags:
   2016年的最后一天  <br />
   对于2017年的想法，就用一个死循环来表示一下吧 <br />
   while(year>2016){ <br />
-         better++; <br />
+      better++; <br />
 }
 
 
