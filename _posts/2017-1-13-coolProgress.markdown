@@ -10,7 +10,6 @@ tags:
     - 进度条
 ---
 
-cool progress animation 酷炫的下载进度条
 最近需要写个进度条动画，之前在github上看到[JSDownloadView](https://github.com/Josin22/JSDownloadView)时就想也自己实现一个，于是就去网上找了一下好看的进度条动画素材准备实现以下。
 
 先把原图放一下：
@@ -53,6 +52,7 @@ cool progress animation 酷炫的下载进度条
         CGRect rect = (CGRect){(width-height)/2,0,height,height};
         return [UIBezierPath bezierPathWithOvalInRect:rect];
     }
+
 **4.初始状态绘制好之后就需要开始动画，由上面的分解可知：**
 - 圆圈->曲线->横线;箭头->铅笔。这些都是形变只需设置**layer.path**属性即可
 
