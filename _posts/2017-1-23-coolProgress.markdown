@@ -123,6 +123,7 @@ tags:
 
 - 至此前半段动画基本完成，一些细节可以自己完善
 - 进度条填充和indicator位移动画和上一篇文章提到的一样，不过此次我采用**CADisplayLink**来刷新进度条，**CADisplayLink是一个与屏幕刷新率保持同步的timer，可以让进度条动画更流畅，看起来更加舒服**，在适当的地方将displayLink添加进runloop即可。
+
       // 让displayLink一直调用此方法刷新进度条
       - (void)refreshUI
       {
@@ -132,6 +133,7 @@ tags:
 
 - **下载失败动画：**我的思路是将此处的失败动画分为两部分。
 进度条类似水面下降动画和水流流下动画两部分。
+
 **1.水面下降动画：利用bounds的变化来实现,将进度条高度直接变为0**
         - (CAAnimationGroup *)progressDissmissAnimation
         {
