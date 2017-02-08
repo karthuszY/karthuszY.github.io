@@ -67,9 +67,8 @@ tags:
 
 这样就完成了箭头变化的形变动画，就是这么简单。顺便把恢复原样的动画也写一下：
 **只需要将toValue改为CATransform3DIdentity即可**,不再更详细赘述        
- 
-  CABasicAnimation *resumeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-  resumeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+     CABasicAnimation *resumeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+     resumeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
 
 - 到此indicator中相关动画基本就完成了，接下来是主类中的**containerLayer**了，containerLayer的形变动画也是和indicator中一样，利用**CABasicAnimation**变化**transform**即可
 
