@@ -66,8 +66,7 @@ tags:
       }
 
 这样就完成了箭头变化的形变动画，就是这么简单。顺便把恢复原样的动画也写一下：
-**只需要将toValue改为CATransform3DIdentity即可**,不再更详细赘述
-        
+**只需要将toValue改为CATransform3DIdentity即可**,不再更详细赘述        
     CABasicAnimation *resumeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     resumeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
 
@@ -135,57 +134,54 @@ tags:
 进度条类似水面下降动画和水流流下动画两部分。
 
 **1.水面下降动画：利用bounds的变化来实现,将进度条高度直接变为0**
-
-        - (CAAnimationGroup *)progressDissmissAnimation
-        {
-            // 将进度条高度变为0
-            CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
-            scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 0, 1)];
+      - (CAAnimationGroup *)progressDissmissAnimation
+      {
+          // 将进度条高度变为0
+          CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+          scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 0, 1)];
     
-            // 由于layer的形变是以原先position为中间点变化
-            // 所以要同步加上朝下位移动画，让“水波”看起来是紧贴着底部
-            CABasicAnimation *downAnim = [CABasicAnimation animationWithKeyPath:@"position.y"];
-            downAnim.toValue = @(self.progressLayer.position.y+kProgressWidth/2);
+          // 由于layer的形变是以原先position为中间点变化
+          // 所以要同步加上朝下位移动画，让“水波”看起来是紧贴着底部
+          CABasicAnimation *downAnim = [CABasicAnimation animationWithKeyPath:@"position.y"];
+          downAnim.toValue = @(self.progressLayer.position.y+kProgressWidth/2);
     
-            CAAnimationGroup *group = [CAAnimationGroup animation];
-            group.fillMode = kCAFillModeForwards;
-            group.removedOnCompletion = NO;
-            group.animations = @[scaleAnim,downAnim];
-            return group;
-        }
+          CAAnimationGroup *group = [CAAnimationGroup animation];
+          group.fillMode = kCAFillModeForwards;
+          group.removedOnCompletion = NO;
+          group.animations = @[scaleAnim,downAnim];
+          return group;
+      }
 
 **2.水流流下动画：此处直接新添加一个layer用作水流，让layer做形变，长度变化，实现类似水流不断流出变长效果，再同时做向下位移动画形成水流不断流出并流下的效果**，思路大致是这样
-
-        // 添加一个layer，在当前进度条的进度位置
-        CALayer *downLayer = [CALayer layer];
-        downLayer.frame = (CGRect){CGRectGetWidth(self.frame)*_progress,CGRectGetHeight(self.frame)/2,2,0};
-        downLayer.backgroundColor = [UIColor whiteColor].CGColor;
-        downLayer.cornerRadius = 2.5f;
-        [self.layer addSublayer:downLayer];
+      // 添加一个layer，在当前进度条的进度位置
+      CALayer *downLayer = [CALayer layer];
+      downLayer.frame = (CGRect){CGRectGetWidth(self.frame)*_progress,CGRectGetHeight(self.frame)/2,2,0};
+      downLayer.backgroundColor = [UIColor whiteColor].CGColor;
+      downLayer.cornerRadius = 2.5f;
+      [self.layer addSublayer:downLayer];
 
  为此layer添加下述动画：
-
-       /**
-        progress持续延长  由于延长是由中心点到上下两边延长
-        因此添加向下位移动画 使其看起来向单向下延伸
-        @return 动画组
-        */
-         - (CAAnimationGroup *)progressDownAnimation
-       {
-           CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"bounds.size"];
-           scaleAnim.toValue = [NSValue valueWithCGSize:(CGSize){1,CGRectGetWidth(self.frame)*_progress}];
+      /**
+      progress持续延长  由于延长是由中心点到上下两边延长
+      因此添加向下位移动画 使其看起来向单向下延伸
+      @return 动画组
+      */
+        - (CAAnimationGroup *)progressDownAnimation
+      {
+          CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"bounds.size"];
+         scaleAnim.toValue = [NSValue valueWithCGSize:(CGSize){1,CGRectGetWidth(self.frame)*_progress}];
     
-           //进度条水面下降时 长度随之一起改变 并向下移
-           CABasicAnimation *downAnim = [CABasicAnimation animationWithKeyPath:@"position.y"];
-           downAnim.toValue = @((CGRectGetWidth(self.frame)*_progress)/2+3);
-           downAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+         //进度条水面下降时 长度随之一起改变 并向下移
+         CABasicAnimation *downAnim = [CABasicAnimation animationWithKeyPath:@"position.y"];
+         downAnim.toValue = @((CGRectGetWidth(self.frame)*_progress)/2+3);
+         downAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     
-           CAAnimationGroup *group = [CAAnimationGroup animation];
-           group.fillMode = kCAFillModeForwards;
-           group.removedOnCompletion = NO;
-           group.animations = @[scaleAnim,downAnim];
-           return group;
-       }
+          CAAnimationGroup *group = [CAAnimationGroup animation];
+         group.fillMode = kCAFillModeForwards;
+         group.removedOnCompletion = NO;
+         group.animations = @[scaleAnim,downAnim];
+         return group;
+     }
 - 下载失败动画基本效果就完成了，只需再添加resume动画，整个进度条动画的主要动画就基本完成了。resume动画比较简单不再赘述有兴趣的朋友可以去看一下代码。
 
 
