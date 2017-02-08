@@ -135,6 +135,7 @@ tags:
 进度条类似水面下降动画和水流流下动画两部分。
 
 **1.水面下降动画：利用bounds的变化来实现,将进度条高度直接变为0**
+
       - (CAAnimationGroup *)progressDissmissAnimation
       {
           // 将进度条高度变为0
@@ -154,6 +155,7 @@ tags:
       }
 
 **2.水流流下动画：此处直接新添加一个layer用作水流，让layer做形变，长度变化，实现类似水流不断流出变长效果，再同时做向下位移动画形成水流不断流出并流下的效果**，思路大致是这样
+
       // 添加一个layer，在当前进度条的进度位置
       CALayer *downLayer = [CALayer layer];
       downLayer.frame = (CGRect){CGRectGetWidth(self.frame)*_progress,CGRectGetHeight(self.frame)/2,2,0};
@@ -162,6 +164,7 @@ tags:
       [self.layer addSublayer:downLayer];
 
  为此layer添加下述动画：
+
       /**
       progress持续延长  由于延长是由中心点到上下两边延长
       因此添加向下位移动画 使其看起来向单向下延伸
@@ -183,6 +186,7 @@ tags:
          group.animations = @[scaleAnim,downAnim];
          return group;
      }
+     
 - 下载失败动画基本效果就完成了，只需再添加resume动画，整个进度条动画的主要动画就基本完成了。resume动画比较简单不再赘述有兴趣的朋友可以去看一下代码。
 
 
