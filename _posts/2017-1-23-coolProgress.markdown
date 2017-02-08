@@ -67,6 +67,7 @@ tags:
 
 这样就完成了箭头变化的形变动画，就是这么简单。顺便把恢复原样的动画也写一下：
 **只需要将toValue改为CATransform3DIdentity即可**,不再更详细赘述        
+
      CABasicAnimation *resumeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
      resumeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
 
