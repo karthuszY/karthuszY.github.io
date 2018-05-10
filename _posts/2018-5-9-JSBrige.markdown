@@ -15,7 +15,9 @@ tags:
 **JS中调用OC方法有三种方式：**
 
 1.通过获取JSContext的方式直接调用OC方法
+
 2.通过继承自JSExport的方式调用delegate中的方法
+
 3.截取URL的方式（此种方式资料很多，就不写了）
 
 先上OC代码
