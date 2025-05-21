@@ -81,4 +81,4 @@ HTML代码
 
 方法二中的**jsContext[@"JavaScriptInterface"] = self**其中的**JavaScriptInterface**可以随便命名，保持JS中和该命名保持一致即可，JS中通过**JavaScriptInterface**来调用继承自JSExport的delegate中的方法，即**JavaScriptInterface.tipMessage()**
 
-[demo下载](https://github.com/Karthus1110/JSCallOCDemo)
+[demo下载](https://github.com/karthuszy/JSCallOCDemo)
